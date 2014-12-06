@@ -24,7 +24,6 @@ do
 done
 
 echo "new create vim.secret"
-for file in vimrc vimrc.basic vimrc.bundle vimrc.color vimrc.comment vimrc.statusline
 touch $HOME/.vim.secret 
 chmod +x $HOME/.vim.secret 
 $HOME/.vim.secret << EOF
