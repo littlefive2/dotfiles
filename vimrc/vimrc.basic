@@ -1,0 +1,248 @@
+syntax enable
+set backspace=indent,eol,start
+set number
+set fileencodings=iso-2022-jp,utf-8,cp932,euc-jp,default,latin
+set encoding=utf8
+set laststatus=2
+set tabstop=4
+set cindent
+set expandtab
+set shiftwidth=4
+set clipboard+=unnamed
+set clipboard+=autoselect
+set foldmethod=indent
+set foldlevel=100
+
+nnoremap <silent> <C-s> <C-a>
+nnoremap <silent> <C-]> g<C-]>
+"Vimでインサートモードを抜けたらIMEの日本語入力を自動的にOFFにする
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+nnoremap <silent> ,e :NERDTree<CR>
+"nnoremap <silent> fm :<C-u>Unite file_mru<CR>
+nnoremap <silent> fm :MRU<CR>
+nnoremap <silent> cy ce<C-r>0<ESC>:let@/=1<CR>:noh<CR>
+vnoremap <silent> cy c<C-r>0<ESC>:let@/=1<CR>:noh<CR>
+nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=1<CR>:noh<CR>
+
+let NERDTreeIgnore=['\~$', '\.pyc$', '.d$[[file]]', '.o$[[file]]']
+let NERDTreeShowBookmarks=1
+let NERDTreeShowLineNumbers=1
+
+let g:indent_guides_auto_colors = 0
+let indent_guides_enable_on_vim_startup = 1
+let indent_guides_color_change_percent = 80
+let indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
+"ctags
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+"特殊ウインドウ許可
+set modifiable
+set write
+
+"２５６色の設定とtmuxのPowerline の設定
+set t_Co=256
+let g:Powerline_symbols='fancy'
+" TODOファイル
+command! Todo edit ~/Dropbox/Memo/todo.txt
+" 一時ファイル(Tmp 拡張子名で一時ファイルとなるファイルを開ける
+command! -nargs=1 -complete=filetype Tmp edit ~/Dropbox/source/vim_tmp/tmp.<args>
+command! -nargs=1 -complete=filetype Temp edit ~/Dropbox/source/vim_tmp/tmp.<args>
+"メモリスト用の設定--------------------------------------------------------
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+map <Leader>mn  :MemoNew<CR>
+map <Leader>ml  :MemoList<CR>
+map <Leader>mg  :MemoGrep<CR>
+let g:memolist_path = "~/Dropbox/Memo"
+"SQLの結果をエクセルにペースト出来るようにする-----------------------------
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+" convert sql to csv
+function! SqlToCsv() range
+    for line_number in range(a:firstline, a:lastline)
+        let line_content = getline(line_number)
+        let line_content = substitute(line_content, "^\s*|\s*", "", "g")
+        let line_content = substitute(line_content, "\s*|\s*", "\t", "g")
+        let line_content = substitute(line_content, " ", "", "g")
+        call setline(line_number, line_content)
+    endfor
+endfunction
+
+vmap <C-L> :call SqlToCsv()<CR>
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+" Memolist の設定
+"let g:memolist_memo_suffix = "rst"
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"日付の入力補助
+inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
+inoremap <expr> ,dd strftime('%Y-%m-%d')
+inoremap <expr> ,dt strftime('%H:%M:%S')
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"タブの設定BEGIN-----------------------------------------------------------
+" new tab
+set showtabline=2
+nmap tn :tabnew<CR>
+nmap <C-l> gt
+nmap <C-h> gT
+nmap tm :tabmove
+nnoremap <silent> tq :tabclose<CR>
+" quick fix open
+nnoremap <silent> ,co :copen<CR>
+" quick fix close
+nnoremap <silent> ,cc :cclose<CR>
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+" 保存したときにPEP8()
+" You need install flake8 first
+autocmd BufWritePost *.py call Flake8()
+"--------------------------------------------------------------------------
+"--------------------------------------------------------------------------
+"行番号切り替え------------------------------------------------------------
+nnoremap <silent> sn :call SwitchNumber()<CR>
+"swich number
+function! SwitchNumber()
+    if &number == 1
+        set nonumber
+    else
+        set number
+    endif
+endfunction
+"-------------------------------------------------------------------------------
+"vimrc reload
+nnoremap <silent> vr :source $MYVIMRC<CR>
+"-------------------------------------------------------------------------------
+"speeddating 日付をインクリメント　デクリメント
+let g:speeddating_no_mappings=1
+nmap <C-J> <Plug>SpeedDatingUp
+nmap <C-K> <Plug>SpeedDatingDown
+xmap <C-J> <Plug>SpeedDatingUp
+xmap <C-K> <Plug>SpeedDatingDown
+nmap d<C-J> <Plug>SpeedDatingNowUTC
+nmap d<C-K> <Plug>SpeedDatingNowLocal
+"-------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+" Tabでウィンドウの移動
+nnoremap <Tab> <C-w>w
+nnoremap <S-Tab> <C-w>W
+nnoremap <Leader><Tab> <C-w>W
+"-------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+" window size"
+"
+ "quick chenge window size
+"ウィンドウを下に大きくする Ctrl-E + j
+"上に... Ctrl-E + k
+"左に... Ctrl-E + h
+"右に... Ctrl-E + l
+nnoremap [winsize] <Nop>
+nmap <C-E> [winsize]
+nnoremap [winsize]k :resize -3<CR>
+nnoremap [winsize]j :resize +3<CR>
+nnoremap [winsize]h :vertical resize +10<CR>
+nnoremap [winsize]l :vertical resize -10<CR>
+"-------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+" PEP8違反を報告するもの一覧
+let g:flake8_ignore="E501,W293,E128,E125"
+
+" Auto-close quickfix window
+  autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+augroup END
+
+" Press F12 to switch to UTF-8 encoding
+nnoremap <F4> :e ++enc=utf-8<CR>
+
+
+"--------------------
+" Function: Open tag under cursor in new tab
+" Source:   http://stackoverflow.com/questions/563616/vimctags-tips-and-tricks
+"--------------------
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+
+" 文字を選択して＊でファイル内を検索する
+"vnoremap <silent> * "vyvim\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR>%<CR>
+"
+"
+"
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+nnoremap sr :set relativenumber<CR>
+
+nnoremap [q :cprevious<CR>   " 前へ
+nnoremap ]q :cnext<CR>       " 次へ
+nnoremap [Q :<C-u>cfirst<CR> " 最初へ
+nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+
+
+
+" Copy current buffer path relative to root of VIM session to system clipboard
+nnoremap <Leader>yp :let @"=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+" Copy current filename to system clipboard
+nnoremap <Leader>yf :let @"=expand("%:p")<cr>:echo "Copied file name to clipboard"<cr>
+" Copy current buffer path without filename to system clipboard
+nnoremap <Leader>yd :let @"=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+
+
+"Search Files
+"exec 'vimgrep /\V' . escape(expand('<cword>'), '/\') . '/g filename'
+function! s:SearchGrep(pat, ext)
+    exe "vimgrep /".a:pat."/j **/*.".a:ext
+    "exec 'vimgrep /\V' . escape(a:pat), '/\') . '/g ' . a:ext
+    copen
+endfunction
+command! -nargs=+ MySearch call s:SearchGrep(<f-args>)
+
+
+let g:pydiction_location = "~/.vim/bundle/pydiction/complete-dict"
+let g:pydiction_menu_height = 3
+
+
+"nnoremap <leader>w :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
+"map <Leader>w :call firefox ()<CR>:redraw!<CR>
+"calc
+inoremap <C-P> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
+
+nnoremap <space> za
+vnoremap <space> zf
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+   let l = 1
+   let n_lines = 0
+   let w_width = winwidth(0)
+   while l <= line('$')
+       " number to float for division
+       let l_len = strlen(getline(l)) + 0.0
+       let line_width = l_len/w_width
+       let n_lines += float2nr(ceil(line_width))
+       let l += 1
+   endw
+   exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+nnoremap <silent> <C-n> :col<CR>
+nnoremap <silent> <C-p> :cnew<CR>
+nnoremap <Leader>s :MySearch \<<C-r><C-w>\> 
+
+source ~/.vim.secret
+"let g:SimplenoteListHeight=10
+let g:SimplenoteVertical=1
+
+
+"let g:SimplenoteUsername = ""
+"let g:SimplenotePassword = ""
+"let g:SimplenoteNoteFormat="[%D] %N%>%T"

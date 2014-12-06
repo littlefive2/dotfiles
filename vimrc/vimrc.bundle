@@ -1,0 +1,29 @@
+"-------------------------------------------------------------------------------
+" vundle?֘A
+"$git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"-------------------------------------------------------------------------------
+set nocompatible
+"
+filetype off                   " required!
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"Bundle "Vundle.vim"
+Bundle "https://github.com/tomasr/molokai.git"
+Bundle "https://github.com/jonathanfilip/vim-lucius.git"
+Bundle "https://github.com/sickill/vim-monokai.git"
+Bundle "mru.vim"
+Bundle "https://github.com/scrooloose/nerdtree.git"
+Bundle "sudo.vim"
+Bundle "nvie/vim-flake8"
+Bundle "speeddating.vim"
+Bundle 'glidenote/memolist.vim'
+Bundle "https://github.com/rkulla/pydiction.git"
+Bundle "changesqlcase.vim"
+Bundle 'mrtazz/simplenote.vim'
+Bundle "sql_iabbr.vim"
+Bundle "https://github.com/dag/vim2hs.git"
+Bundle "https://github.com/davidhalter/jedi-vim.git"
+Bundle "nginx.vim"
+Bundle "https://github.com/thiderman/vim-supervisor.git"
+call vundle#end()
+filetype plugin indent on     " required!

@@ -1,0 +1,97 @@
+"" 上下の移動を増やす
+map j 5<C-e>
+map k 5<C-y>
+"" タブ移動
+map -builtin <C-h> <C-p>
+map -builtin <C-l> <C-n>
+map -builtin [] :tabonly<CR>
+map -builtin S :tabopen g 
+
+cmap <C-h> <C-Left>
+cmap <C-l> <C-Right>
+
+" tumblr ではjklrを透過
+set passkeys+=tumblr.com\/dashboard:jklrh
+"autocmd LocationChange www.tumblr.com :normal! h,j,k
+
+set defsearch=ddg
+set cpt=bookmark,search,suggestion
+
+set suggestengines=wikipedia-ja
+
+qmark a http://www.amazon.co.jp/
+qmark y http://www.yahoo.co.jp/
+
+map m :tabopen site:anond.hatelabo.jp 
+
+set hintkeys=asdfjkop
+" Styx theme for Pentadactyl
+" TODO Script needs cleanup; certain elements are not covered, but I can't find their highlight groups
+"
+" Title: #e9d9b3
+" Light purp: #d6b8f5
+hi clear
+hi -a Normal color: #ddd !important;
+hi -a Normal background: radial-gradient(ellipse, #282828, #111) !important;
+hi -a FontFixed font-family: "Source Code Pro", "Panic Sans", "Monaco", monospace; font-size: 11pt !important;
+"" some groups -- such as `CmdLine` and `StatusLine` -- are linked by default
+hi -a -link=FontFixed Hint
+hi -a -link=FontFixed CompItem
+hi -a -link=FontFixed CompTitle
+hi Hint font-size: 18px; background: rgba(162,114,209,0.8) !important; border: 2px solid rgb(162,114,209); padding: 4px; border-radius: 3px; font-weight: bold; color: white; line-height:1em;
+hi HintActive background: rgba(200, 255, 0, 0.6) !important;
+" This one isn't being respected
+hi HintElem background: rgba(255, 195, 0, 0.6) !important;
+hi -a Enabled color: #cde88a !important;
+hi -a CmdCmdLine background: linear-gradient(to bottom, #1a1a1a, #222) !important;
+hi -a CmdCmdLine height: 1.8em !important;
+"hi -a -link=StatusLine AddonBar
+"hi -a AddonButton color: #b1d631 !important;
+"hi -a AddonButtons color: #b1d631 !important;
+"hi -a Button color: #b1d631 !important;
+hi -a CmdPrompt background: transparent !important;
+"" Align prompt with the text - fix after changing height
+hi -a CmdPrompt padding-top: .2em !important;
+hi -a CmdErrorMsg background: linear-gradient(to bottom, #f05, #b03) !important;
+hi -a CmdWarningMsg background: linear-gradient(to bottom, #f05, #b03) !important;
+hi -a ErrorMsg background: linear-gradient(to bottom, #f05, #b03) !important;
+hi -a WarningMsg background: linear-gradient(to bottom, #f05, #b03) !important;
+hi -a InlineHelpLink color: #93c3d6 !important;
+hi -a URL color: #93c3d6 !important;
+hi -a StatusLine background: linear-gradient(to bottom, #444, #222) !important;
+hi -a StatusLine padding-right: .4em !important;
+hi -a StatusLine height: 1.8em !important;
+hi -a StatusLine font-weight: normal !important;
+hi -a StatusLine text-shadow: 0 -1px 1px #000 !important;
+hi -a StatusLineNormal color: #ddd !important;
+hi -a StatusLineBroken color: #ffb6c0 !important;
+hi -a StatusLineExtended color: #cde88a !important;
+hi -a StatusLineSecure color: #93c3d6 !important;
+hi -a StatusModeMsg color: #e9d9b3 !important;
+hi -a Title color: #e9d9b3 !important;
+hi -a Message color: #e9d9b3 !important;
+hi -a MoreMsg color: #e9d9b3 !important;
+hi -a CompMsg color: #e9d9b3 !important;
+hi -a Question color: #e9d9b3 !important; background: transparent !important;
+hi -a StatusMoreMsg color: #e9d9b3 !important;
+hi -a InfoMsg color: #fff !important; background: linear-gradient(to bottom, #A272D1, #855BAF) !important;
+hi -a StatusQuestion color: #e9d9b3 !important;
+hi -a StatusWarningMsg color: #ffb6c0 !important;
+hi -a CmdMoreMsg color: #e9d9b3 !important;
+hi -a CmdInfoMsg color: #e9d9b3 !important;
+hi -a CompTitle color: #e9d9b3 !important;
+hi -a CompTitle background-color: #222 !important;
+hi -a CompTitleSep background: #111 !important;
+hi -a CompItem[selected] color: #000 !important;
+hi -a CompItem[selected]>CompDesc color: #000 !important;
+hi -a CompItem[selected] text-shadow: 0 1px 0 rgba(255,255,255,.6) !important;
+hi -a CompItem[selected] background: linear-gradient(to bottom, #72BCDB, #539dbd) !important;
+hi -a NonText color: #444 !important;
+
+style chrome://browser/content/browser.xul #dactyl-commandline-command > .textbox-input-box > input{ime-mode:inactive !important;}
+style chrome://browser/content/browser.xul #addon-bar > #tabview-button{list-style-image: url("chrome://browser/skin/tabview/tabview-inverted.png") !important;}
+style chrome://browser/content/browser.xul #addon-bar > .toolbarbutton-1 > dropmarker{list-style-image: url("chrome://browser/skin/toolbarbutton-dropdown-arrow-inverted.png") !important;}
+style chrome://browser/content/browser.xul #addon-bar > :-moz-any(#reload-button, #stop-button, #home-button, #print-button, #downloads-button, #history-button, #bookmarks-button, #bookmarks-menu-button, #new-window-button, #cut-button, #copy-button, #paste-button, #fullscreen-button, #zoom-out-button, #zoom-in-button, #sync-button:not([status="active"]), #feed-button, #new-tab-button) > .toolbarbutton-icon, #addon-bar > #unified-back-forward-button > :-moz-any(#back-button, #forward-button){list-style-image: url("chrome://browser/skin/Toolbar-inverted.png") !important;}
+
+
+command pocket -description "Bookmarklet: Save to pocket" open javascript:(function(){var%20e=function(t,n,r,i,s){var%20o=[2056841,4378040,5216063,1941464,5644833,2760006,6424109,5133041,4176642,3128637];var%20i=i||0,u=0,n=n||[],r=r||0,s=s||0;var%20a={'a':97,'b':98,'c':99,'d':100,'e':101,'f':102,'g':103,'h':104,'i':105,'j':106,'k':107,'l':108,'m':109,'n':110,'o':111,'p':112,'q':113,'r':114,'s':115,'t':116,'u':117,'v':118,'w':119,'x':120,'y':121,'z':122,'A':65,'B':66,'C':67,'D':68,'E':69,'F':70,'G':71,'H':72,'I':73,'J':74,'K':75,'L':76,'M':77,'N':78,'O':79,'P':80,'Q':81,'R':82,'S':83,'T':84,'U':85,'V':86,'W':87,'X':88,'Y':89,'Z':90,'0':48,'1':49,'2':50,'3':51,'4':52,'5':53,'6':54,'7':55,'8':56,'9':57,'\/':47,':':58,'?':63,'=':61,'-':45,'_':95,'&':38,'$':36,'!':33,'.':46};if(!s||s==0){t=o[0]+t}for(var%20f=0;f<t.length;f++){var%20l=function(e,t){return%20a[e[t]]?a[e[t]]:e.charCodeAt(t)}(t,f);if(!l*1)l=3;var%20c=l*(o[i]+l*o[u%o.length]);n[r]=(n[r]?n[r]+c:c)+s+u;var%20p=c%(50*1);if(n[p]){var%20d=n[r];n[r]=n[p];n[p]=d}u+=c;r=r==50?0:r+1;i=i==o.length-1?0:i+1}if(s==229){var%20v='';for(var%20f=0;f<n.length;f++){v+=String.fromCharCode(n[f]%(25*1)+97)}o=function(){};return%20v+'b5e5c5966f'}else{return%20e(u+'',n,r,i,s+1)}};var%20t=document,n=t.location.href,r=t.title;var%20i=e(n);var%20s=t.createElement('script');s.type='text/javascript';s.src='https://getpocket.com/b/r4.js?h='+i+'&u='+encodeURIComponent(n)+'&t='+encodeURIComponent(r);e=i=function(){};var%20o=t.getElementsByTagName('head')[0]||t.documentElement;o.appendChild(s)})();                                                                                                                  

@@ -1,0 +1,15 @@
+vmap ,# :s/^/#/<CR>:nohlsearch<CR>
+vmap ,/ :s/^/\/\//<CR>:nohlsearch<CR>
+vmap ,> :s/^/> /<CR>:nohlsearch<CR>
+vmap ," :s/^/\"/<CR>:nohlsearch<CR>
+vmap ,% :s/^/%/<CR>:nohlsearch<CR>
+vmap ,! :s/^/!/<CR>:nohlsearch<CR>
+vmap ,; :s/^/;/<CR>:nohlsearch<CR>
+vmap ,- :s/^/--/<CR>:nohlsearch<CR>
+vmap ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>:nohlsearch<CR>
+" wrapping comments
+vmap ,* :s/^\(.*\)$/\/\* \1 \*\//<CR>:nohlsearch<CR>
+vmap ,( :s/^\(.*\)$/\(\* \1 \*\)/<CR>:nohlsearch<CR>
+vmap ,< :s/^\(.*\)$/<!-- \1 -->/<CR>:nohlsearch<CR>
+vmap ,d :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>:nohlsearch<CR> 
+
