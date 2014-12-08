@@ -10,7 +10,6 @@ do
     fi
     ln -s $HOME/dotfiles/bash/$file $HOME/.$file
 done
-source $HOME/.bashrc
 
 #vim
 echo "vimrcfile settigns....."
@@ -24,7 +23,7 @@ do
 done
 
 echo "new create vim.secret"
-touch $HOME/.vim.secret 
+touch /home/vagrant/.vim.secret 
 chmod +x $HOME/.vim.secret 
 $HOME/.vim.secret << EOF
 let g:SimplenoteUsername = 
@@ -34,3 +33,6 @@ EOF
 echo "*Please input password for Simplenote"
 
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+echo "tmux settings....."
+ln -s $HOME/dotfiles/tmux/tmux_ubuntu.conf $HOME/.tmux.conf
