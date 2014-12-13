@@ -246,3 +246,9 @@ let g:SimplenoteVertical=1
 "let g:SimplenoteUsername = ""
 "let g:SimplenotePassword = ""
 "let g:SimplenoteNoteFormat="[%D] %N%>%T"
+
+function! s:EditDiary()
+    exe 'Simplenote -o [NOTE_ID]'
+    exe 'only'
+endfunction
+command! Md call s:EditDiary()
