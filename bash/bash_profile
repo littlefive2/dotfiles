@@ -13,3 +13,4 @@ export PATH
 PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
 export PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.cabal-sandbox/bin 
