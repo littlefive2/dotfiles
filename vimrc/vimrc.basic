@@ -252,3 +252,9 @@ function! s:EditDiary()
     exe 'only'
 endfunction
 command! Md call s:EditDiary()
+
+" Key bind for resize window
+nnoremap <silent> <S-h> <C-W>5>
+nnoremap <silent> <S-l> <C-W>5<
+nnoremap <silent> <S-k> <C-W>5-
+nnoremap <silent> <S-j> <C-W>5+
