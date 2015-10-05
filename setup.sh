@@ -1,16 +1,18 @@
 #!/bin/bash
 
-git clone https://github.com/frkwy/dotfiles.git $HOME/dotfiles
+git clone https://github.com/frkwy/dotfiles.git $HOME/rcfiles
 
 # bash
 echo "bashfile settigns....."
+mkdir ~/tmp
+mkdir ~/Memo
 for file in bash_profile bashrc bashrc_mininum
 do
     FILE=$HOME/.$file
     if [ -a $FILE ]; then
         rm $FILE
     fi
-    ln -s $HOME/dotfiles/bash/$file $HOME/.$file
+    ln -s $HOME/rcfiles/bash/$file $HOME/.$file
 done
 
 #vim
@@ -21,7 +23,7 @@ do
     if [ -a $FILE ]; then
         rm $FILE
     fi
-    ln -s $HOME/dotfiles/vimrc/$file $HOME/.$file
+    ln -s $HOME/rcfiles/vimrc/$file $HOME/.$file
 done
 
 echo "new create vim.secret"
@@ -37,6 +39,7 @@ echo "*Please input password for Simplenote"
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +BundleInstall +qall
 
-echo "tmux settings....."
-ln -s $HOME/dotfiles/tmux/tmux_ubuntu.conf $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-yank ~/rcfiles
 
+echo "tmux settings....."
+ln -s $HOME/dotfiles/tmux.conf $HOME/.tmux.conf

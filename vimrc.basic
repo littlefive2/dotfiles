@@ -1,15 +1,13 @@
 syntax enable
 set backspace=indent,eol,start
 set number
-set fileencodings=iso-2022-jp,utf-8,cp932,euc-jp,default,latin
+set fileencodings=utf-8,iso-2022-jp,utf-8,cp932,euc-jp,default,latin
 set encoding=utf8
 set laststatus=2
 set tabstop=4
 set cindent
 set expandtab
 set shiftwidth=4
-set clipboard+=unnamed
-set clipboard+=autoselect
 set foldmethod=indent
 set foldlevel=100
 
@@ -24,7 +22,7 @@ nnoremap <silent> cy ce<C-r>0<ESC>:let@/=1<CR>:noh<CR>
 vnoremap <silent> cy c<C-r>0<ESC>:let@/=1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=1<CR>:noh<CR>
 
-let NERDTreeIgnore=['\~$', '\.pyc$', '.d$[[file]]', '.o$[[file]]']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.d$[[file]]', '\.o$[[file]]']
 let NERDTreeShowBookmarks=1
 let NERDTreeShowLineNumbers=1
 
@@ -36,7 +34,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
 "ctags
-let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+"let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 "特殊ウインドウ許可
 set modifiable
 set write
@@ -45,17 +43,17 @@ set write
 set t_Co=256
 let g:Powerline_symbols='fancy'
 " TODOファイル
-command! Todo edit ~/Dropbox/Memo/todo.txt
+command! Todo edit ~/todo.txt
 " 一時ファイル(Tmp 拡張子名で一時ファイルとなるファイルを開ける
-command! -nargs=1 -complete=filetype Tmp edit ~/Dropbox/source/vim_tmp/tmp.<args>
-command! -nargs=1 -complete=filetype Temp edit ~/Dropbox/source/vim_tmp/tmp.<args>
+command! -nargs=1 -complete=filetype Tmp edit ~/tmp.<args>
+command! -nargs=1 -complete=filetype Temp edit ~/tmp.<args>
 "メモリスト用の設定--------------------------------------------------------
 "--------------------------------------------------------------------------
 "--------------------------------------------------------------------------
 map <Leader>mn  :MemoNew<CR>
 map <Leader>ml  :MemoList<CR>
 map <Leader>mg  :MemoGrep<CR>
-let g:memolist_path = "~/Dropbox/Memo"
+let g:memolist_path = "~/Memo"
 "SQLの結果をエクセルにペースト出来るようにする-----------------------------
 "--------------------------------------------------------------------------
 "--------------------------------------------------------------------------
@@ -73,19 +71,10 @@ endfunction
 
 vmap <C-L> :call SqlToCsv()<CR>
 "--------------------------------------------------------------------------
-"--------------------------------------------------------------------------
-"--------------------------------------------------------------------------
-" Memolist の設定
-"let g:memolist_memo_suffix = "rst"
-"--------------------------------------------------------------------------
-"--------------------------------------------------------------------------
-"--------------------------------------------------------------------------
 "日付の入力補助
 inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
 inoremap <expr> ,dd strftime('%Y-%m-%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
-"--------------------------------------------------------------------------
-"--------------------------------------------------------------------------
 "--------------------------------------------------------------------------
 "タブの設定BEGIN-----------------------------------------------------------
 " new tab
@@ -137,8 +126,6 @@ nnoremap <Tab> <C-w>w
 nnoremap <S-Tab> <C-w>W
 nnoremap <Leader><Tab> <C-w>W
 "-------------------------------------------------------------------------------
-"-------------------------------------------------------------------------------
-"-------------------------------------------------------------------------------
 " window size"
 "
  "quick chenge window size
@@ -153,32 +140,7 @@ nnoremap [winsize]j :resize +3<CR>
 nnoremap [winsize]h :vertical resize +10<CR>
 nnoremap [winsize]l :vertical resize -10<CR>
 "-------------------------------------------------------------------------------
-"-------------------------------------------------------------------------------
-"-------------------------------------------------------------------------------
-" PEP8違反を報告するもの一覧
-let g:flake8_ignore="E501,W293,E128,E125"
 
-" Auto-close quickfix window
-  autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
-augroup END
-
-" Press F12 to switch to UTF-8 encoding
-nnoremap <F4> :e ++enc=utf-8<CR>
-
-
-"--------------------
-" Function: Open tag under cursor in new tab
-" Source:   http://stackoverflow.com/questions/563616/vimctags-tips-and-tricks
-"--------------------
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-
-
-
-" 文字を選択して＊でファイル内を検索する
-"vnoremap <silent> * "vyvim\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR>%<CR>
-"
-"
-"
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 nnoremap sr :set relativenumber<CR>
@@ -187,16 +149,6 @@ nnoremap [q :cprevious<CR>   " 前へ
 nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
-
-
-
-" Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <Leader>yp :let @"=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
-" Copy current filename to system clipboard
-nnoremap <Leader>yf :let @"=expand("%:p")<cr>:echo "Copied file name to clipboard"<cr>
-" Copy current buffer path without filename to system clipboard
-nnoremap <Leader>yd :let @"=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
-
 
 "Search Files
 "exec 'vimgrep /\V' . escape(expand('<cword>'), '/\') . '/g filename'
@@ -207,13 +159,6 @@ function! s:SearchGrep(pat, ext)
 endfunction
 command! -nargs=+ MySearch call s:SearchGrep(<f-args>)
 
-
-let g:pydiction_location = "~/.vim/bundle/pydiction/complete-dict"
-let g:pydiction_menu_height = 3
-
-
-"nnoremap <leader>w :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
-"map <Leader>w :call firefox ()<CR>:redraw!<CR>
 "calc
 inoremap <C-P> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
 
@@ -239,16 +184,10 @@ nnoremap <silent> <C-p> :cnew<CR>
 nnoremap <Leader>s :MySearch \<<C-r><C-w>\> 
 
 source ~/.vim.secret
-"let g:SimplenoteListHeight=10
 let g:SimplenoteVertical=1
 
-
-"let g:SimplenoteUsername = ""
-"let g:SimplenotePassword = ""
-"let g:SimplenoteNoteFormat="[%D] %N%>%T"
-
 function! s:EditDiary()
-    exe 'Simplenote -o [NOTE_ID]'
+    exe 'Simplenote -o '
     exe 'only'
 endfunction
 command! Md call s:EditDiary()
@@ -258,3 +197,8 @@ nnoremap <silent> <S-h> <C-W>5>
 nnoremap <silent> <S-l> <C-W>5<
 nnoremap <silent> <S-k> <C-W>5-
 nnoremap <silent> <S-j> <C-W>5+
+
+map <F7> <C-r><C-o>z
+
+set mouse=a
+set clipboard=unnamedplus
