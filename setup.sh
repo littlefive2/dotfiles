@@ -2,7 +2,9 @@
 
 git clone https://github.com/frkwy/dotfiles.git $HOME/rcfiles
 
-# bash
+############################## 
+#bash
+############################## 
 echo "bashfile settigns....."
 mkdir ~/tmp
 mkdir ~/Memo
@@ -15,7 +17,9 @@ do
     ln -s $HOME/rcfiles/$file $HOME/.$file
 done
 
+############################## 
 #vim
+############################## 
 echo "vimrcfile settigns....."
 for file in vimrc vimrc.basic vimrc.bundle vimrc.color vimrc.comment vimrc.statusline
 do
@@ -43,3 +47,5 @@ git clone https://github.com/tmux-plugins/tmux-yank ~/rcfiles/tmux-yank
 
 echo "tmux settings....."
 ln -s $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
+
+sed s/"// $HOME/rcfiles/vimrc.color
