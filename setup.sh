@@ -12,7 +12,7 @@ do
     if [ -a $FILE ]; then
         rm $FILE
     fi
-    ln -s $HOME/rcfiles/bash/$file $HOME/.$file
+    ln -s $HOME/rcfiles/$file $HOME/.$file
 done
 
 #vim
@@ -23,7 +23,7 @@ do
     if [ -a $FILE ]; then
         rm $FILE
     fi
-    ln -s $HOME/rcfiles/vimrc/$file $HOME/.$file
+    ln -s $HOME/rcfiles/$file $HOME/.$file
 done
 
 echo "new create vim.secret"
@@ -39,7 +39,7 @@ echo "*Please input password for Simplenote"
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +BundleInstall +qall
 
-git clone https://github.com/tmux-plugins/tmux-yank ~/rcfiles
+git clone https://github.com/tmux-plugins/tmux-yank ~/rcfiles/tmux-yank
 
 echo "tmux settings....."
 ln -s $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
