@@ -53,4 +53,5 @@ git clone https://github.com/tmux-plugins/tmux-yank ~/rcfiles/tmux-yank
 echo "tmux settings....."
 ln -s $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
-sed s/\"// $HOME/rcfiles/vimrc.color
+sed s/\"// $HOME/.vimrc.color  > $HOME/.vimrc.color
+source ~/.bash_profile
