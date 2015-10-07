@@ -96,6 +96,6 @@ linux*)
 esac
 ## git settings
 source $HOME/bin/git-prompt.sh
-source /usr/local/git/contrib/completion/git-completion.bash
+source $HOME/bin/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='$(__git_ps1)\[\033[00m\]\$ |<[\e[0;34m\t\e[0m] \e[0;33m\u@\h\e[1;32m\w\e[0m>\n|_>$'
