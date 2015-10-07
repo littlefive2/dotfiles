@@ -23,10 +23,13 @@ alias ,,="cd ../.."
 alias .a="./a.out"
 alias etc="workon etc"
 
+## cdd
 if [ -f ~/Dropbox/bin/cdd ]
 then
+    #echo the file exists
     . ~/Dropbox/bin/cdd
 fi
+
 
 cd() {
       builtin cd "$@"
@@ -66,7 +69,7 @@ darwin*)
     export SVN_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
     alias ctags='/usr/local/Cellar/ctags/5.8/bin/ctags'
     export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7"
-    export PYTHONPATH="/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7"
+    #export PYTHONPATH="/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7"
 
     if [ -f ~/.virtualenvwrapperrc ]; then
           export WORKON_HOME=~/.virtualenvs
@@ -91,6 +94,8 @@ linux*)
     fi
 ;;
 esac
-
-PS1="|<[\e[0;34m\t\e[0m] \e[0;33m\u@\h\e[1;32m\w\e[0m>\n|_>$"
-export SVN_EDITOR=vim
+## git settings
+source $HOME/bin/git-prompt.sh
+source /usr/local/git/contrib/completion/git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='$(__git_ps1)\[\033[00m\]\$ |<[\e[0;34m\t\e[0m] \e[0;33m\u@\h\e[1;32m\w\e[0m>\n|_>$'

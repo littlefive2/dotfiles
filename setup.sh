@@ -14,7 +14,7 @@ do
     if [ -a $FILE ]; then
         rm $FILE
     fi
-    ln -s $HOME/rcfiles/$file $HOME/.$file
+    ln -sf $HOME/rcfiles/$file $HOME/.$file
 done
 
 ############################## 
@@ -27,7 +27,7 @@ do
     if [ -a $FILE ]; then
         rm $FILE
     fi
-    ln -s $HOME/rcfiles/$file $HOME/.$file
+    ln -sf $HOME/rcfiles/$file $HOME/.$file
 done
 
 echo "new create vim.secret"
