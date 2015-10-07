@@ -82,7 +82,7 @@ linux*)
     if [ -f ~/.virtualenvwrapperrc ]; then
           export VIRTUALENVWRAPPER_PYTHON=/usr/bin/pythonhogehog
           export WORKON_HOME=~/Envs
-          source /usr/local/bin/virtualenvwrapper.sh
+          source /usr/bin/virtualenvwrapper.sh
     fi
 ;;
 esac
