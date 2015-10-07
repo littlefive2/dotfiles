@@ -7,7 +7,12 @@ git clone https://github.com/frkwy/dotfiles.git $HOME/rcfiles
 ############################## 
 echo "bashfile settigns....."
 mkdir ~/tmp
+mkdir ~/bin
 mkdir ~/Memo
+
+mv rcfiles/git-prompt.sh $HOME/bin/git-prompt.sh
+mv rcfiles/git-completion.bash $HOME/bin/git-completion.bash
+
 for file in bash_profile bashrc bashrc_mininum
 do
     FILE=$HOME/.$file
