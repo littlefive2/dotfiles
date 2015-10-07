@@ -54,6 +54,6 @@ echo "tmux settings....."
 ln -s $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
 
-sed s/\"// $HOME/rcfiles/vimrc.color > $HOME/.vimrc.color
-source ~/.bash_profile
+sed -i s/\"// $HOME/rcfiles/vimrc.color
 source /usr/bin/virtualenvwrapper.sh
+source ~/.bash_profile
