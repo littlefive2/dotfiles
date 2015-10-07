@@ -10,8 +10,8 @@ mkdir ~/tmp
 mkdir ~/bin
 mkdir ~/Memo
 
-mv git-prompt.sh $HOME/bin/git-prompt.sh
-mv git-completion.bash $HOME/bin/git-completion.bash
+mv $HOME/rcfiles/git-prompt.sh $HOME/bin/git-prompt.sh
+mv $HOME/rcfiles/git-completion.bash $HOME/bin/git-completion.bash
 
 for file in bash_profile bashrc bashrc_mininum
 do
