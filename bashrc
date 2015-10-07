@@ -24,10 +24,10 @@ alias .a="./a.out"
 alias etc="workon etc"
 
 ## cdd
-if [ -f ~/Dropbox/bin/cdd ]
+if [ -f ~/bin/cdd ]
 then
     #echo the file exists
-    . ~/Dropbox/bin/cdd
+    . ~/bin/cdd
 fi
 
 

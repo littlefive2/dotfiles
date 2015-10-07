@@ -12,6 +12,7 @@ mkdir ~/Memo
 
 mv $HOME/rcfiles/git-prompt.sh $HOME/bin/git-prompt.sh
 mv $HOME/rcfiles/git-completion.bash $HOME/bin/git-completion.bash
+mv $HOME/rcfiles/cdd $HOME/bin/cdd
 
 for file in bash_profile bashrc bashrc_mininum
 do
