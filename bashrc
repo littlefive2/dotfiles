@@ -30,14 +30,6 @@ then
     . ~/bin/cdd
 fi
 
-
-cd() {
-      builtin cd "$@"
-        local ret=$?
-          ((ret)) || _cdd_chpwd
-            return $ret
-}
-
 extract () {
    if [ -f $1 ] ; then
        case $1 in
