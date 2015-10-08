@@ -16,5 +16,6 @@ Bundle 'glidenote/memolist.vim'
 Bundle 'mrtazz/simplenote.vim'
 Bundle "https://github.com/w0ng/vim-hybrid.git"
 Bundle "TwitVim"
+Bundle "https://github.com/jmcantrell/vim-virtualenv.git"
 call vundle#end()
 filetype plugin indent on     " required!
