@@ -2,8 +2,8 @@
 set -o vi
 
 ## for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 ## enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -58,14 +58,10 @@ darwin*)
     alias la="ls -laG"
     alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    export SVN_EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
     alias ctags='/usr/local/Cellar/ctags/5.8/bin/ctags'
-    export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7"
-    #export PYTHONPATH="/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7"
-
     if [ -f ~/.virtualenvwrapperrc ]; then
-          export WORKON_HOME=~/.virtualenvs
-          source ~/.virtualenvwrapper.sh
+      export WORKON_HOME=~/.virtualenvs
+      source ~/.virtualenvwrapper.sh
     fi
 ;;
 linux*)
@@ -78,14 +74,12 @@ linux*)
     else
         alias vim='/usr/bin/vim'
     fi
-    alias vim='/usr/bin/vim'
-    if [ -f ~/.virtualenvwrapperrc ]; then
-          export VIRTUALENVWRAPPER_PYTHON=/usr/bin/pythonhogehog
-          export WORKON_HOME=~/Envs
-          source /usr/bin/virtualenvwrapper.sh
-    fi
+    #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+    export WORKON_HOME=~/Envs
+    source /usr/bin/virtualenvwrapper.sh
 ;;
 esac
+
 ## git settings
 source $HOME/bin/git-prompt.sh
 source $HOME/bin/git-completion.bash
