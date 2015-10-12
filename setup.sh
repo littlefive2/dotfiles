@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# locale
+# create dir
+mkdir ~/tmp
+mkdir ~/Envs
+mkdir ~/bin
+mkdir ~/Memo
 mkdir $HOME/.config
+# locale
 echo "
 LANG=ja_JP.UTF-8
 LC_CTYPE=ja_JP.UTF-8
@@ -22,10 +27,6 @@ LC_ALL=
 # clone my rcfiles
 git clone https://github.com/frkwy/dotfiles.git $HOME/rcfiles
 
-# create dir
-mkdir ~/tmp
-mkdir ~/bin
-mkdir ~/Memo
 
 # put file
 mv $HOME/rcfiles/git-prompt.sh $HOME/bin/git-prompt.sh
