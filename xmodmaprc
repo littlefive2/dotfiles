@@ -1,0 +1,4 @@
+! keycode 102 Muhenkan
+
+! mukenkan to ALT_L
+keycode 102 = Alt_L
