@@ -17,5 +17,10 @@ Bundle 'mrtazz/simplenote.vim'
 Bundle "https://github.com/w0ng/vim-hybrid.git"
 Bundle "TwitVim"
 Bundle "https://github.com/jmcantrell/vim-virtualenv.git"
+
+" install
+" https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64-installation
+" usage: ctags -R --python-kinds=-i -o tags env/
+Bundle "https://github.com/Valloric/YouCompleteMe.git"
 call vundle#end()
 filetype plugin indent on     " required!
